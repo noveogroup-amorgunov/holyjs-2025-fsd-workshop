@@ -1,0 +1,15 @@
+{
+  "name": "monorepo-root",
+  "private": true,
+  "scripts": {
+    "dev:clean": "pnpm --filter clean-architecture dev",
+    "dev:modular": "pnpm --filter modular-architecture dev",
+    "build:clean": "pnpm --filter clean-architecture build",
+    "build:modular": "pnpm --filter modular-architecture build",
+    "preview:clean": "pnpm --filter clean-architecture preview",
+    "preview:modular": "pnpm --filter modular-architecture preview"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2"
+  }
+} 

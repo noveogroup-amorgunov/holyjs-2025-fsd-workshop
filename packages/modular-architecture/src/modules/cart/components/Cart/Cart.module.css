@@ -1,0 +1,138 @@
+.cart {
+  position: sticky;
+  top: 24px;
+  padding: 24px;
+  background: var(--color-card-background);
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+  margin: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.cart h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.cartItems {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cartItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  background: var(--color-background);
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  transition: all 0.2s ease;
+}
+
+.cartItem:hover {
+  box-shadow: var(--shadow-sm);
+}
+
+.itemInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.itemInfo span:first-child {
+  font-weight: 500;
+}
+
+.itemActions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.quantityControls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--color-card-background);
+  border: 1px solid var(--color-border);
+  border-radius: 6px;
+  padding: 2px;
+}
+
+.quantityButton {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  color: var(--color-text);
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.quantityButton:hover:not(:disabled) {
+  background: var(--color-border);
+}
+
+.quantityButton:disabled {
+  color: var(--color-text-secondary);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.quantity {
+  min-width: 32px;
+  text-align: center;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+button.removeButton {
+  background-color: transparent;
+  color: var(--color-danger);
+  border: 1px solid var(--color-danger);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+button.removeButton:hover:not(:disabled) {
+  background-color: var(--color-danger);
+  color: var(--color-card-background);
+}
+
+.cartTotal {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--color-border);
+  text-align: right;
+  font-size: 1.125rem;
+}
+
+.price {
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+}
+
+@media (max-width: 768px) {
+  .cartItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .itemActions {
+    width: 100%;
+    justify-content: space-between;
+  }
+} 
