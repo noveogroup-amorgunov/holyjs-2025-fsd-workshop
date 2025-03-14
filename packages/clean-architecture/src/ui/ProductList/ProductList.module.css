@@ -7,6 +7,11 @@
   grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
   gap: 24px;
   margin-top: 24px;
+
+  @media (max-width: 540px) {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
 }
 
 button {
