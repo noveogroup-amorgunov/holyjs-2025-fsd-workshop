@@ -1,8 +1,9 @@
 import { useAddToCart } from '~/application/addToCart'
 import { useDi } from '~/services/di/useDi'
-import styles from './Cart.module.css'
-import { Price } from '../Price/Price'
 import { AddToCartButton } from '../AddToCartButton/AddToCartButton'
+import { Price } from '../Price/Price'
+import styles from './Cart.module.css'
+
 export function Cart() {
   const cartStorageService = useDi('CART_STORAGE_SERVICE_TOKEN')
   const notificationService = useDi('NOTIFICATION_SERVICE_TOKEN')
@@ -17,7 +18,18 @@ export function Cart() {
 
   return (
     <div className={styles.cart}>
-      <h2>Shopping Cart</h2>
+      <h2>
+        Shopping Cart
+        {items.length > 0 && (
+          <span className={styles.cartCount}>
+            {' '}
+            (total:
+            &nbsp;
+            <Price amount={total} currency={items.length > 0 ? items[0].product.price.currency : 'USD'} />
+            )
+          </span>
+        )}
+      </h2>
       {items.length === 0
         ? (
             <p>Your cart is empty</p>
@@ -27,9 +39,9 @@ export function Cart() {
               <div className={styles.cartItems}>
                 {items.map(({ product, quantity }) => (
                   <div key={product.id} className={styles.cartItem}>
-                  <div className={styles.image}>
-                    <img src={product.image} alt={product.name} />
-                  </div>
+                    <div className={styles.image}>
+                      <img src={product.image} alt={product.name} />
+                    </div>
                     <div className={styles.itemActions}>
                       <AddToCartButton
                         showQuantity
@@ -44,11 +56,6 @@ export function Cart() {
                     </div>
                   </div>
                 ))}
-              </div>
-              <div className={styles.cartTotal}>
-                <strong>
-                  Total: <Price amount={total} currency={items.length > 0 ? items[0].product.price.currency : 'USD'} />
-                </strong>
               </div>
             </>
           )}
