@@ -1,9 +1,9 @@
 import type { PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from './reduxStore'
-import type { Product } from '~/types/product'
 import { createSelector, createSlice } from '@reduxjs/toolkit'
 import { createAppAsyncThunk } from './createAppAsyncThunk'
 import { useLoadPopularProducts } from '~/application/loadPopularProducts'
+import { Product } from '~/domain/product'
 
 interface PopularProductsState {
   items: Product[]
