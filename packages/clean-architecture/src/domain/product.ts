@@ -1,4 +1,4 @@
-import { Money } from '@monorepo/shared'
+import type { Money } from '@monorepo/shared'
 
 export interface Product {
   id: string

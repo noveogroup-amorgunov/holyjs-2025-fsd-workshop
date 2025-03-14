@@ -1,9 +1,9 @@
 import type { PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from './reduxStore'
+import type { Product } from '~/domain/product'
 import { createSelector, createSlice } from '@reduxjs/toolkit'
-import { createAppAsyncThunk } from './createAppAsyncThunk'
 import { useLoadPopularProducts } from '~/application/loadPopularProducts'
-import { Product } from '~/domain/product'
+import { createAppAsyncThunk } from './createAppAsyncThunk'
 
 interface PopularProductsState {
   items: Product[]
@@ -22,7 +22,7 @@ export const fetchPopularProducts = createAppAsyncThunk<void, void>(
   async (_, { extra: diContainer }) => {
     const productService = diContainer.get('PRODUCT_SERVICE_TOKEN')
     const productStorageService = diContainer.get('PRODUCT_STORAGE_SERVICE_TOKEN')
-  
+
     // FIXME: hooks should not be used in the store,
     // change API in application layer
     const { load } = useLoadPopularProducts({
@@ -39,7 +39,7 @@ export const popularProductsSlice = createSlice({
   initialState,
   reducers: {
     setProducts: (state, action: PayloadAction<Product[]>) => {
-      action.payload.forEach(product => {
+      action.payload.forEach((product) => {
         if (state.items.find(p => p.id === product.id)) {
           return
         }

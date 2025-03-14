@@ -1,6 +1,6 @@
+import type { diContainer } from '../di/useDi'
+import type { AppDispatch, RootState } from './reduxStore'
 import { createAsyncThunk } from '@reduxjs/toolkit'
-import { AppDispatch, RootState } from './reduxStore'
-import { diContainer } from '../di/useDi'
 
 export const createAppAsyncThunk = createAsyncThunk.withTypes<{
   state: RootState

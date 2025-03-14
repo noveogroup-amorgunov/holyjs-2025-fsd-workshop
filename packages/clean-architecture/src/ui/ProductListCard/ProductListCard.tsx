@@ -1,8 +1,8 @@
-import { Product } from "~/domain/product"
+import type { Product } from '~/domain/product'
+import { AddToCartButton } from '../AddToCartButton/AddToCartButton'
 import styles from './ProductListCard.module.css'
-import { AddToCartButton } from "../AddToCartButton/AddToCartButton"
 
-type Props = {
+interface Props {
   product: Product
   outOfStock: boolean
   canAddToCart: boolean

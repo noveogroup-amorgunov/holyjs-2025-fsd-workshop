@@ -1,10 +1,10 @@
-import styles from './AddToCartButton.module.css'
-import { Price } from '../Price/Price'
-import { Money } from '@monorepo/shared'
+import type { Money } from '@monorepo/shared'
 import { featureFlagService } from '~/services/featureFlagService'
+import { Price } from '../Price/Price'
+import styles from './AddToCartButton.module.css'
 import audioUrl from './mixkit-on-or-off-light-switch-tap-2585.wav?url'
 
-type Props = {
+interface Props {
   price: Money
   outOfStock: boolean
   canAddToCart: boolean
@@ -22,7 +22,7 @@ async function playAudio() {
     audioCached = await response.arrayBuffer()
   }
 
-  const blob = new Blob([audioCached], { type: "audio/wav" })
+  const blob = new Blob([audioCached], { type: 'audio/wav' })
   const blobUrl = URL.createObjectURL(blob)
 
   new Audio(blobUrl).play()

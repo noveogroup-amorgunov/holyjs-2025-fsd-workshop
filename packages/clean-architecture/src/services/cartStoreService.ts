@@ -1,6 +1,6 @@
 import type { CartStorageService as CartStorageServicePort } from '~/application/ports'
+import type { Product } from '~/domain/product'
 import { signal } from '@preact/signals'
-import { Product } from '~/domain/product'
 
 interface CartItem {
   product: Product

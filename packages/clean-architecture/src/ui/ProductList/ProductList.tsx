@@ -1,11 +1,11 @@
+import type { AppDispatch } from '~/services/store/reduxStore'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useAddToCart } from '~/application/addToCart'
 import { useDi } from '~/services/di/useDi'
 import { fetchPopularProducts, selectPopularProducts, selectPopularProductsError, selectPopularProductsLoading } from '~/services/store/popularProducts'
-import styles from './ProductList.module.css'
-import { useAddToCart } from '~/application/addToCart'
-import type { AppDispatch } from '~/services/store/reduxStore'
 import { ProductListCard } from '../ProductListCard/ProductListCard'
+import styles from './ProductList.module.css'
 
 export function ProductList() {
   const dispatch = useDispatch<AppDispatch>()
@@ -61,7 +61,7 @@ export function ProductList() {
               canAddToCart={availableStock > 0}
               quantity={quantity}
               increaseQuantity={() => addToCart(product, quantity + 1)}
-              decreaseQuantity={() => addToCart(product, quantity-1)}
+              decreaseQuantity={() => addToCart(product, quantity - 1)}
             />
           )
         })}

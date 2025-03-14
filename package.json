@@ -7,7 +7,9 @@
     "build:clean": "pnpm --filter clean-architecture build",
     "build:modular": "pnpm --filter modular-architecture build",
     "preview:clean": "pnpm --filter clean-architecture preview",
-    "preview:modular": "pnpm --filter modular-architecture preview"
+    "preview:modular": "pnpm --filter modular-architecture preview",
+    "lint:clean": "pnpm --filter clean-architecture lint",
+    "lint:modular": "pnpm --filter modular-architecture lint"
   },
   "devDependencies": {
     "typescript": "^5.2.2"

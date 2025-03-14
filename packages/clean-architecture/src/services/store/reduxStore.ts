@@ -1,14 +1,14 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { popularProductsReducer } from './popularProducts'
 import { diContainer } from '../di/useDi'
+import { popularProductsReducer } from './popularProducts'
 
 export const store = configureStore({
   reducer: {
     popularProducts: popularProductsReducer,
   },
   middleware: getDefaultMiddleware => getDefaultMiddleware({
-    thunk: { extraArgument: diContainer }
-  })
+    thunk: { extraArgument: diContainer },
+  }),
 })
 
 export type RootState = ReturnType<typeof store.getState>
