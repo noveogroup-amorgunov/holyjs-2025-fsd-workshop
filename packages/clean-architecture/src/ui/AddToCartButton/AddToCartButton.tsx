@@ -12,7 +12,7 @@ type Props = {
   decreaseQuantity: () => void
 }
 
-const audioUrl = '/public/mixkit-on-or-off-light-switch-tap-2585.wav'
+const audioUrl = '/mixkit-on-or-off-light-switch-tap-2585.wav'
 
 export function AddToCartButton(props: Props) {
   const handleIncreaseQuantity = (e: React.MouseEvent<HTMLButtonElement | HTMLDivElement>) => {
