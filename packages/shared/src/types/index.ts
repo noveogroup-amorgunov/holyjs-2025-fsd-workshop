@@ -1,4 +1,4 @@
 export interface Money {
-  amount: number;
-  currency: string;
-} 
+  amount: number
+  currency: 'USD' | 'EUR' | 'RUB'
+}
