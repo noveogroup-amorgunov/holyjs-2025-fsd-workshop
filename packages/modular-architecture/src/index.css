@@ -5,6 +5,7 @@
 
   /* Light theme colors */
   --color-background: #fafafa;
+  --color-background-secondary: #ccc;
   --color-card-background: #ffffff;
   --color-text: #000000;
   --color-text-secondary: #666666;
@@ -23,6 +24,7 @@
 [data-theme='dark'] {
   --color-background: #000000;
   --color-card-background: #111111;
+  --color-background-secondary: #222222;
   --color-text: #ffffff;
   --color-text-secondary: #888888;
   --color-border: #333333;

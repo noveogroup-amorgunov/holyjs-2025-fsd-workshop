@@ -21,12 +21,15 @@ function App() {
   return (
     <Provider store={store}>
       <div className={styles.app}>
+        <h1 className={styles.title}>HolyJS workshop (modular architecture)</h1>
         <div className={styles.layout}>
           <ProductList />
-          {featureFlagsService.get('cart') && <Cart />}
+          {featureFlagsService.get('cart') && <div className={styles.sidebar}><Cart /></div>}
         </div>
-        {featureFlagsService.get('darkTheme') && <ThemeToggle />}
-        <FeatureToggle />
+        <div className={styles.actions}>
+          {featureFlagsService.get('darkTheme') && <ThemeToggle />}
+          <FeatureToggle />
+        </div>
       </div>
     </Provider>
   )

@@ -1,5 +1,4 @@
 import type { AppDispatch } from '~/core/store/store'
-import type { Product } from '~/types/product'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { cartStore } from '~/modules/cart/store/cart.store'
@@ -9,6 +8,7 @@ import {
   selectPopularProductsLoading,
 } from '../../store/popular-products.selectors'
 import { fetchPopularProducts } from '../../store/popular-products.slice'
+import { ProductListCard } from '../ProductListCard/ProductListCard'
 import styles from './ProductList.module.css'
 
 export function ProductList() {
@@ -20,55 +20,46 @@ export function ProductList() {
 
   useEffect(() => {
     dispatch(fetchPopularProducts())
-  }, [dispatch])
+  }, [])
 
-  const getAvailableStock = (product: Product) => {
-    const cartItem = cartItems.find(item => item.product.id === product.id)
-    const inCartQuantity = cartItem?.quantity || 0
-    return product.stock - inCartQuantity
+  if (loading) {
+    return (
+      <div className={styles.root}>
+        <h2>Popular Products</h2>
+        <div>Loading...</div>
+      </div>
+    )
   }
 
-  if (loading)
-    return <div>Loading...</div>
   if (error) {
     return (
-      <div>
-        Error:
-        {error}
+      <div className={styles.root}>
+        <h2>Popular Products</h2>
+        <div>Error loading...</div>
       </div>
     )
   }
 
   return (
-    <div className={styles.productList}>
+    <div className={styles.root}>
       <h2>Popular Products</h2>
       <div className={styles.grid}>
         {products.map((product) => {
-          const availableStock = getAvailableStock(product)
+          const cartItem = cartItems.find(item => item.product.id === product.id)
+          const quantity = cartItem?.quantity || 0
+          const availableStock = product.stock - quantity
+          const outOfStock = product.stock === 0
 
           return (
-            <div key={product.id} className={styles.productCard}>
-              <h3>{product.name}</h3>
-              <p>{product.description}</p>
-              <p className={styles.price}>
-                $
-                {product.price.amount.toFixed(2)}
-                {' '}
-                {product.price.currency}
-              </p>
-              <p className={`${styles.stock} ${availableStock === 0 ? styles.outOfStock : ''}`}>
-                Available:
-                {' '}
-                {availableStock}
-              </p>
-              <button
-                type="button"
-                onClick={() => cartStore.addToCart(product)}
-                disabled={availableStock === 0}
-              >
-                {availableStock === 0 ? 'Out of Stock' : 'Add to Cart'}
-              </button>
-            </div>
+            <ProductListCard
+              key={product.id}
+              product={product}
+              outOfStock={outOfStock}
+              canAddToCart={availableStock > 0}
+              quantity={quantity}
+              increaseQuantity={() => cartStore.addToCart(product, 1)}
+              decreaseQuantity={() => cartStore.addToCart(product, -1)}
+            />
           )
         })}
       </div>

@@ -15,14 +15,14 @@ export const cartSignal = signal<CartState>({
 })
 
 export const cartStore = {
-  addToCart: (product: Product) => {
+  addToCart: (product: Product, quantity: number = 1) => {
     const currentItems = [...cartSignal.value.items]
     const existingItemIndex = currentItems.findIndex(
       item => item.product.id === product.id,
     )
 
     if (existingItemIndex !== -1) {
-      currentItems[existingItemIndex].quantity += 1
+      currentItems[existingItemIndex].quantity += quantity
     }
     else {
       currentItems.push({ product, quantity: 1 })

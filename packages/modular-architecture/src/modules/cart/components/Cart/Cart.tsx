@@ -1,9 +1,9 @@
-import { useDi } from '~/core/di/useDi'
+import { Price } from '~/core/components/Price/Price'
 import { cartStore } from '../../store/cart.store'
+import { AddToCartButton } from '../AddToCartButton/AddToCartButton'
 import styles from './Cart.module.css'
 
 export function Cart() {
-  const featureFlagsService = useDi('FEATURE_FLAGS_SERVICE_TOKEN')
   const items = cartStore.getItems()
   const total = cartStore.getTotal()
 
@@ -12,17 +12,26 @@ export function Cart() {
     if (newQuantity > 0 && newQuantity <= maxStock) {
       cartStore.updateQuantity(productId, newQuantity)
     }
+
+    if (newQuantity === 0) {
+      cartStore.removeFromCart(productId)
+    }
   }
 
   return (
     <div className={styles.cart}>
-      <div>
-        enable feature flag darkTheme:
-        {featureFlagsService.get('darkTheme') ? 'true' : 'false'}
-      </div>
-      <button type="button" onClick={() => featureFlagsService.toggle('darkTheme')}>Toggle feature flag darkTheme</button>
-
-      <h2>Shopping Cart</h2>
+      <h2>
+        Shopping Cart
+        {items.length > 0 && (
+          <span className={styles.cartCount}>
+            {' '}
+            (total:
+            &nbsp;
+            <Price amount={total} currency={items.length > 0 ? items[0].product.price.currency : 'USD'} />
+            )
+          </span>
+        )}
+      </h2>
       {items.length === 0
         ? (
             <p>Your cart is empty</p>
@@ -32,57 +41,23 @@ export function Cart() {
               <div className={styles.cartItems}>
                 {items.map(({ product, quantity }) => (
                   <div key={product.id} className={styles.cartItem}>
-                    <div className={styles.itemInfo}>
-                      <span>{product.name}</span>
-                      <span className={styles.price}>
-                        $
-                        {product.price.amount.toFixed(2)}
-                        {' '}
-                        x
-                        {' '}
-                        {quantity}
-                      </span>
+                    <div className={styles.image}>
+                      <img src={product.image} alt={product.name} />
                     </div>
                     <div className={styles.itemActions}>
-                      <div className={styles.quantityControls}>
-                        <button
-                          type="button"
-                          className={styles.quantityButton}
-                          onClick={() => handleQuantityChange(product.id, -1, quantity, product.stock)}
-                          disabled={quantity <= 1}
-                          aria-label="Decrease quantity"
-                        >
-                          -
-                        </button>
-                        <span className={styles.quantity}>{quantity}</span>
-                        <button
-                          type="button"
-                          className={styles.quantityButton}
-                          onClick={() => handleQuantityChange(product.id, 1, quantity, product.stock)}
-                          disabled={quantity >= product.stock}
-                          aria-label="Increase quantity"
-                        >
-                          +
-                        </button>
-                      </div>
-                      <button
-                        type="button"
-                        onClick={() => cartStore.removeFromCart(product.id)}
-                        className={styles.removeButton}
-                      >
-                        Remove
-                      </button>
+                      <AddToCartButton
+                        showQuantity
+                        price={product.price}
+                        outOfStock={product.stock === 0}
+                        canAddToCart={quantity < product.stock}
+                        quantity={quantity}
+                        increaseQuantity={() => handleQuantityChange(product.id, 1, quantity, product.stock)}
+                        decreaseQuantity={() => handleQuantityChange(product.id, -1, quantity, product.stock)}
+                      />
+
                     </div>
                   </div>
                 ))}
-              </div>
-              <div className={styles.cartTotal}>
-                <strong>
-                  Total: $
-                  {total.toFixed(2)}
-                  {' '}
-                  USD
-                </strong>
               </div>
             </>
           )}
