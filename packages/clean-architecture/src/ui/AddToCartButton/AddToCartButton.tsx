@@ -1,6 +1,8 @@
 import styles from './AddToCartButton.module.css'
 import { Price } from '../Price/Price'
 import { Money } from '@monorepo/shared'
+import { featureFlagService } from '~/services/featureFlagService'
+import audioUrl from './mixkit-on-or-off-light-switch-tap-2585.wav?url'
 
 type Props = {
   price: Money
@@ -12,19 +14,39 @@ type Props = {
   decreaseQuantity: () => void
 }
 
-const audioUrl = '/mixkit-on-or-off-light-switch-tap-2585.wav'
+let audioCached: ArrayBuffer | null = null
+
+async function playAudio() {
+  if (!audioCached) {
+    const response = await fetch(audioUrl)
+    audioCached = await response.arrayBuffer()
+  }
+
+  const blob = new Blob([audioCached], { type: "audio/wav" })
+  const blobUrl = URL.createObjectURL(blob)
+
+  new Audio(blobUrl).play()
+}
 
 export function AddToCartButton(props: Props) {
+  const audioEffects = featureFlagService.get('audioEffects')
+
   const handleIncreaseQuantity = (e: React.MouseEvent<HTMLButtonElement | HTMLDivElement>) => {
     e.stopPropagation()
-    new Audio(audioUrl).play()
     props.increaseQuantity()
+
+    if (audioEffects) {
+      playAudio()
+    }
   }
 
   const handleDecreaseQuantity = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation()
-    new Audio(audioUrl).play()
     props.decreaseQuantity()
+
+    if (audioEffects) {
+      playAudio()
+    }
   }
 
   if (props.outOfStock) {

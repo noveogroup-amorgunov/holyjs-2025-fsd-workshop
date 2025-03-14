@@ -3,13 +3,13 @@ import { signal } from '@preact/signals'
 export interface FeatureFlagsStore {
   darkTheme: boolean
   cart: boolean
-  productRatings: boolean
+  audioEffects: boolean
 }
 
 export const featureFlagsStore = signal<FeatureFlagsStore>({
   darkTheme: true,
   cart: true,
-  productRatings: false,
+  audioEffects: false,
 })
 
 export const featureFlagService = {
