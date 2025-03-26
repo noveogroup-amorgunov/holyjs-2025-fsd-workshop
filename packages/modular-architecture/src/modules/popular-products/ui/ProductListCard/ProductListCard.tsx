@@ -1,5 +1,5 @@
 import type { Product } from '~/types/product'
-import { AddToCartButton } from '../../../cart/components/AddToCartButton/AddToCartButton'
+import { AddToCartButton } from '~/modules/cart/ui/AddToCartButton/AddToCartButton'
 import styles from './ProductListCard.module.css'
 
 interface Props {

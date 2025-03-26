@@ -1,6 +1,6 @@
 import type { Money } from '@monorepo/shared'
 import { useDi } from '~/core/di/useDi'
-import { Price } from '../../../../core/components/Price/Price'
+import { Price } from '~/core/ui/Price/Price'
 import styles from './AddToCartButton.module.css'
 import audioUrl from './mixkit-on-or-off-light-switch-tap-2585.wav?url'
 

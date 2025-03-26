@@ -1,4 +1,4 @@
-import { Price } from '~/core/components/Price/Price'
+import { Price } from '~/core/ui/Price/Price'
 import { cartStore } from '../../store/cart.store'
 import { AddToCartButton } from '../AddToCartButton/AddToCartButton'
 import styles from './Cart.module.css'
