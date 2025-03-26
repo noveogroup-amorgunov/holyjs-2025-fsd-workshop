@@ -1,7 +1,7 @@
-import type { RootState } from '~/core/store/store'
+import type { AppState } from '~/core/store/store'
 import { createSelector } from '@reduxjs/toolkit'
 
-const selectPopularProductsState = (state: RootState) => state.popularProducts
+const selectPopularProductsState = (state: AppState) => state.popularProducts
 
 export const selectPopularProducts = createSelector(
   [selectPopularProductsState],
