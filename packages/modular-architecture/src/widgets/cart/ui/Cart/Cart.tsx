@@ -1,6 +1,5 @@
-import { Price } from '~/shared/ui'
+import { AddToCartButton, Price } from '~/shared/ui'
 import { cartStore } from '../../store/cart.store'
-import { AddToCartButton } from '../AddToCartButton/AddToCartButton'
 import styles from './Cart.module.css'
 
 export function Cart() {

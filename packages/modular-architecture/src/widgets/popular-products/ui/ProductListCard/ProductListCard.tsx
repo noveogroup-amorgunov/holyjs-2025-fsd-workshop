@@ -1,5 +1,5 @@
 import type { Product } from '~/shared/global-types'
-import { AddToCartButton } from '~/widgets/cart'
+import { AddToCartButton } from '~/shared/ui'
 import styles from './ProductListCard.module.css'
 
 interface Props {

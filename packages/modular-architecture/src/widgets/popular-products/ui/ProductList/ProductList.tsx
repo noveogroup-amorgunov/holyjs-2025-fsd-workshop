@@ -1,7 +1,7 @@
 import type { AppDispatch } from '~/shared/redux'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { cartStore } from '~/widgets/cart'
+import { useDi } from '~/shared/di'
 import {
   selectPopularProducts,
   selectPopularProductsError,
@@ -16,6 +16,7 @@ export function ProductList() {
   const products = useSelector(selectPopularProducts)
   const loading = useSelector(selectPopularProductsLoading)
   const error = useSelector(selectPopularProductsError)
+  const cartStore = useDi('CART_STORE_TOKEN')
   const cartItems = cartStore.getItems()
 
   useEffect(() => {
