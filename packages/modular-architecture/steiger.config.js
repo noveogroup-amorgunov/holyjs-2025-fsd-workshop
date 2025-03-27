@@ -5,7 +5,6 @@ export default defineConfig([
   ...fsd.configs.recommended,
   {
     files: [
-      'src/shared/redux/types.ts',
       'src/shared/di/useDi.tsx',
     ],
     rules: {

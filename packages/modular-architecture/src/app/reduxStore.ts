@@ -1,11 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { popularProductsReducer } from '~/widgets/popular-products'
+import { rootReducer } from '../shared/redux'
 
 export const store = configureStore({
-  reducer: {
-    popularProducts: popularProductsReducer,
-  },
+  reducer: rootReducer,
 })
-
-export type AppState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch

@@ -1,5 +1,6 @@
 import type { Product } from '~/shared/global-types'
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { rootReducer } from '~/shared/redux'
 import { getPopularProducts } from '../services/getPopularProducts'
 
 interface PopularProductsState {
@@ -21,7 +22,7 @@ export const fetchPopularProducts = createAsyncThunk(
   },
 )
 
-const popularProductsSlice = createSlice({
+const slice = createSlice({
   name: 'popularProducts',
   initialState,
   reducers: {},
@@ -41,4 +42,6 @@ const popularProductsSlice = createSlice({
   },
 })
 
-export const popularProductsReducer = popularProductsSlice.reducer
+export const popularProductsReducer = slice.reducer
+
+export const popularProductsSlice = slice.injectInto(rootReducer)
