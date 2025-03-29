@@ -4,6 +4,9 @@ import type { RootState } from '~/shared/services'
 import { createSelector, createSlice } from '@reduxjs/toolkit'
 import { useLoadPopularProducts } from '~/features/loadPopularProducts'
 import { diContainer } from '~/shared/services'
+
+// popularProducts.ts:21 Uncaught ReferenceError: Cannot access 'createAppAsyncThunk' before initialization
+// at popularProducts.ts:21:37
 import { createAppAsyncThunk } from '~/shared/services/store/createAppAsyncThunk'
 
 interface PopularProductsState {

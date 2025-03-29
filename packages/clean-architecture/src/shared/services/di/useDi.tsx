@@ -1,4 +1,4 @@
-import { productStorageServiceAdapter } from '~/pages/home'
+import { productStorageServiceAdapter } from '~/pages/home/services/productStorageService'
 import { authAdapter } from '../authAdaper'
 import { cartStoreService } from '../cartStoreService'
 import { featureFlagService } from '../featureFlagService'

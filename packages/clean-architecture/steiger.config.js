@@ -25,7 +25,9 @@ export default defineConfig([
   {
     files: [
       // fix early import
+      // Uncaught ReferenceError: Cannot access '<...>' before initialization
       'src/pages/home/model/popularProducts.ts',
+      'src/shared/services/di/useDi.tsx',
     ],
     rules: {
       'fsd/no-public-api-sidestep': 'off',

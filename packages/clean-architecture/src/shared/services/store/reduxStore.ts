@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 // import { diContainer } from '../di/useDi'
-import { popularProductsReducer } from '~/pages/home'
+import { popularProductsReducer } from '~/pages/home/model/popularProducts'
 
 // TODO: move to app layer
 export const store = configureStore({
