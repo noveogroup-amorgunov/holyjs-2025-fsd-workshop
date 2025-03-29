@@ -10,9 +10,9 @@ export function HomePage({ sidebarClassName }: Props) {
   const featureFlagsService = useDi('FEATURE_FLAGS_SERVICE_TOKEN')
 
   return (
-    <div>
+    <>
       <ProductList />
       {featureFlagsService.get('cart') && <div className={sidebarClassName}><Cart /></div>}
-    </div>
+    </>
   )
 }
